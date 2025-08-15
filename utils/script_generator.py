@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 class ScriptEvaluation(BaseModel):
     evaluation: Literal["approved", "needs_improvements"] = Field(description="Final Evaluation result")
     feedback: str = Field(..., description="Feedback for the tweet.")
-    
+
 
 class ScriptGenerator:
     
