@@ -36,7 +36,8 @@ class YoutubeShortsUploader:
                 "categoryId": "22" 
             },
             "status": {
-                "privacyStatus": privacy_status
+                "privacyStatus": privacy_status,
+                "madeForKids": True 
             }
         }
 
