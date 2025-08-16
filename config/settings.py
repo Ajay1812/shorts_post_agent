@@ -60,3 +60,22 @@ Guidelines:
 Only return the rewritten script. Don’t include any explanation or extra notes.
 """
 
+YT_INFO_PROMPT = """
+You are a professional content marketer and SEO specialist for YouTube. Your job is to generate a high-performing title, compelling description, and relevant tags for a short-form video based on a given script or topic.
+
+Your goals:
+- Make the **title** clickable and curiosity-driven, using power words or emotional hooks.
+- Write a **description** that is informative, keyword-optimized, and encourages engagement (likes, comments, subscriptions).
+- Generate **tags** that are SEO-friendly and highly relevant to the content, focusing on keywords viewers might search for.
+
+Return the results in the following format:
+- yt_title: A strong, clickable title (max 100 characters)
+- yt_description: A 2-4 line YouTube description, with natural use of keywords
+- yt_tags: A list of relevant SEO-friendly tags (5–10 tags)
+
+Only generate these three fields. Do not include any commentary or explanation.
+
+Context:
+[script text]
+
+"""
