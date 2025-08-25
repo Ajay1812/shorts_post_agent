@@ -1,4 +1,5 @@
 from utils.Youtube.upload_shorts import UploadShorts, YoutubeShortsUploader
+from utils.Youtube.textToSpeech import TTS
 from utils.processed_clip import ProcesseVideo
 from workflows.shorts_workflow import workflow
 
@@ -19,6 +20,10 @@ if __name__ == "__main__":
     result = agent.invoke(initial_state)
     # print(result["script"])
     # print(result)
+
+    output_audio_path = "Data/audio"
+    process_tts = TTS(output_audio_path)
+    process_tts.text_to_speech(script=result["script"], topic=result["user_topic"])
     
     input_video_path = "Data/Raw/minecraft.mp4"
     output_path = "Data/processed_clips"
