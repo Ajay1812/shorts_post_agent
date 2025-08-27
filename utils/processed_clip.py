@@ -5,7 +5,7 @@ import glob
 class ProcesseVideo:
     def __init__(self, input_path: str):
         self.input_path = input_path
-    def process(self, output_path:str, part_duration=30):
+    def process(self, output_path:str, part_duration=75):
         if not os.path.exists(self.input_path):
             raise FileNotFoundError(f"Input video not found: {self.input_path}")
         if not os.path.exists(output_path):

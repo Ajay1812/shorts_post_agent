@@ -376,6 +376,18 @@ wheels = [
 ]
 
 [[package]]
+name = "ffmpeg-python"
+version = "0.2.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "future" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/dd/5e/d5f9105d59c1325759d838af4e973695081fbbc97182baf73afc78dec266/ffmpeg-python-0.2.0.tar.gz", hash = "sha256:65225db34627c578ef0e11c8b1eb528bb35e024752f6f10b78c011f6f64c4127", size = 21543, upload-time = "2019-07-06T00:19:08.989Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d7/0c/56be52741f75bad4dc6555991fabd2e07b432d333da82c11ad701123888a/ffmpeg_python-0.2.0-py3-none-any.whl", hash = "sha256:ac441a0404e053f8b6a1113a77c0f452f1cfc62f6344a769475ffdc0f56c23c5", size = 25024, upload-time = "2019-07-06T00:19:07.215Z" },
+]
+
+[[package]]
 name = "filelock"
 version = "3.19.1"
 source = { registry = "https://pypi.org/simple" }
@@ -443,6 +455,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/8b/02/0835e6ab9cfc03916fe3f78c0956cfcdb6ff2669ffa6651065d5ebf7fc98/fsspec-2025.7.0.tar.gz", hash = "sha256:786120687ffa54b8283d942929540d8bc5ccfa820deb555a2b5d0ed2b737bf58", size = 304432, upload-time = "2025-07-15T16:05:21.19Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2f/e0/014d5d9d7a4564cf1c40b5039bc882db69fd881111e03ab3657ac0b218e2/fsspec-2025.7.0-py3-none-any.whl", hash = "sha256:8b012e39f63c7d5f10474de957f3ab793b47b45ae7d39f2fb735f8bbe25c0e21", size = 199597, upload-time = "2025-07-15T16:05:19.529Z" },
+]
+
+[[package]]
+name = "future"
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/a7/b2/4140c69c6a66432916b26158687e821ba631a4c9273c474343badf84d3ba/future-1.0.0.tar.gz", hash = "sha256:bd2968309307861edae1458a4f8a4f3598c03be43b97521076aebf5d94c07b05", size = 1228490, upload-time = "2024-02-21T11:52:38.461Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/da/71/ae30dadffc90b9006d77af76b393cb9dfbfc9629f339fc1574a1c52e6806/future-1.0.0-py3-none-any.whl", hash = "sha256:929292d34f5872e70396626ef385ec22355a1fae8ad29e1a734c3e43f9fbc216", size = 491326, upload-time = "2024-02-21T11:52:35.956Z" },
 ]
 
 [[package]]
@@ -1186,6 +1207,15 @@ en = [
     { name = "phonemizer-fork" },
     { name = "spacy" },
     { name = "spacy-curated-transformers" },
+]
+
+[[package]]
+name = "more-itertools"
+version = "10.7.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/ce/a0/834b0cebabbfc7e311f30b46c8188790a37f89fc8d756660346fe5abfd09/more_itertools-10.7.0.tar.gz", hash = "sha256:9fddd5403be01a94b204faadcff459ec3568cf110265d3c54323e1e866ad29d3", size = 127671, upload-time = "2025-04-22T14:17:41.838Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2b/9f/7ba6f94fc1e9ac3d2b853fdff3035fb2fa5afbed898c4a72b8a020610594/more_itertools-10.7.0-py3-none-any.whl", hash = "sha256:d43980384673cb07d2f7d2d918c616b30c659c089ee23953f601d6609c67510e", size = 65278, upload-time = "2025-04-22T14:17:40.49Z" },
 ]
 
 [[package]]
@@ -2097,8 +2127,11 @@ dependencies = [
     { name = "langchain-community" },
     { name = "langchain-google-genai" },
     { name = "langgraph" },
+    { name = "numpy" },
     { name = "python-dotenv" },
     { name = "soundfile" },
+    { name = "srt" },
+    { name = "whisper-openai" },
 ]
 
 [package.metadata]
@@ -2112,8 +2145,11 @@ requires-dist = [
     { name = "langchain-community", specifier = ">=0.3.27" },
     { name = "langchain-google-genai", specifier = ">=2.1.9" },
     { name = "langgraph", specifier = ">=0.6.4" },
+    { name = "numpy", specifier = ">=2.3.2" },
     { name = "python-dotenv", specifier = ">=1.1.1" },
     { name = "soundfile", specifier = ">=0.13.1" },
+    { name = "srt", specifier = ">=3.5.3" },
+    { name = "whisper-openai", specifier = ">=1.0.0" },
 ]
 
 [[package]]
@@ -2271,6 +2307,12 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/0d/9b/be48e185c5a010e71b5135e4cdf317ff56b8ac4bc08f394bbf882ac13b05/srsly-2.5.1-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:bab90b85a63a1fe0bbc74d373c8bb9bb0499ddfa89075e0ebe8d670f12d04691", size = 1100354, upload-time = "2025-01-17T09:26:07.215Z" },
     { url = "https://files.pythonhosted.org/packages/3a/e2/745aeba88a8513017fbac2fd2f9f07b8a36065e51695f818541eb795ec0c/srsly-2.5.1-cp313-cp313-win_amd64.whl", hash = "sha256:e73712be1634b5e1de6f81c273a7d47fe091ad3c79dc779c03d3416a5c117cee", size = 630634, upload-time = "2025-01-17T09:26:10.018Z" },
 ]
+
+[[package]]
+name = "srt"
+version = "3.5.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/66/b7/4a1bc231e0681ebf339337b0cd05b91dc6a0d701fa852bb812e244b7a030/srt-3.5.3.tar.gz", hash = "sha256:4884315043a4f0740fd1f878ed6caa376ac06d70e135f306a6dc44632eed0cc0", size = 28296, upload-time = "2023-03-28T02:35:44.007Z" }
 
 [[package]]
 name = "stack-data"
@@ -2560,6 +2602,23 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a7/1a/9c522dd61b52939c217925d3e55c95f9348b73a66a956f52608e1e59a2c0/weasel-0.4.1.tar.gz", hash = "sha256:aabc210f072e13f6744e5c3a28037f93702433405cd35673f7c6279147085aa9", size = 38417, upload-time = "2024-05-15T08:52:54.765Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2a/87/abd57374044e1f627f0a905ac33c1a7daab35a3a815abfea4e1bafd3fdb1/weasel-0.4.1-py3-none-any.whl", hash = "sha256:24140a090ea1ac512a2b2f479cc64192fd1d527a7f3627671268d08ed5ac418c", size = 50270, upload-time = "2024-05-15T08:52:52.977Z" },
+]
+
+[[package]]
+name = "whisper-openai"
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "ffmpeg-python" },
+    { name = "more-itertools" },
+    { name = "numpy" },
+    { name = "torch" },
+    { name = "tqdm" },
+    { name = "transformers" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/28/64/31ba5f5e0e9f4fa612522bd30130d3b2a760cfa94602508ede30cc495c9b/whisper-openai-1.0.0.tar.gz", hash = "sha256:6125bef4755677663ce1ed8202d0ca87ccdef5c510e363ccc2430ea5dfed5b0e", size = 1163360, upload-time = "2022-12-20T01:29:20.11Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/49/47/703d2cc91ffc5db7df16793c2812980b6eb5cc59cec342ba9cb017d4a343/whisper_openai-1.0.0-py3-none-any.whl", hash = "sha256:6bdbe12f572d0414b0d545d49517943eb2af7e15d099ce14937007917da27d6e", size = 1175437, upload-time = "2022-12-20T01:29:18.578Z" },
 ]
 
 [[package]]

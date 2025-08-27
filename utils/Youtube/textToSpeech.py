@@ -9,7 +9,7 @@ class TTS:
 
     def text_to_speech(self, script, topic):
         combined_audio = []
-        topic = topic.replace(" ", "-")
+        topic = topic.replace(" ", "_")
         pipeline = KPipeline(lang_code='a')
         generator = pipeline(script, voice='af_bella')
         
