@@ -2,6 +2,7 @@ from utils.Youtube.upload_shorts import UploadShorts, YoutubeShortsUploader
 from utils.Youtube.textToSpeech import TTS
 from utils.Youtube.generate_subtitles import Subtitles
 from utils.Youtube.generate_final_video import FinalShort
+from utils.Youtube.random_background_video import RandomVideo
 from utils.processed_clip import ProcesseVideo
 from workflows.shorts_workflow import workflow
 import os
@@ -48,9 +49,11 @@ if __name__ == "__main__":
     
     # Merge video + audio + subtitles
     final_output_path = "Data/upload"
-    final_process = FinalShort()
+    random_video = RandomVideo().select_random_video()
+    video_file_path = f"Data/processed_clips/{random_video}"
+    final_process = FinalShort(state=result)
     final_process.process(
-        video_file_path="Data/processed_clips/part_000.mp4",
+        video_file_path=video_file_path,
         audio_file_path=audio_file,
         subtitle_file_path=subtitle_file,
         temp_path="Data/upload/temp.mp4",
@@ -70,4 +73,3 @@ if __name__ == "__main__":
         tags=result["yt_tags"],
         privacy_status="private"
     )
-    os.remove(f"{final_output_path}/final.mp4")
