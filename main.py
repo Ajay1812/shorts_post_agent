@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
     uploader = YoutubeShortsUploader(youtube_client)
     uploader.upload_video(
-        file_path=f"{final_output_path}/final.mp4",
+        file_path=f"{final_output_path}/{result["user_topic"].replace(' ', '_')}.mp4",
         title=result["yt_title"],
         description=result["yt_description"],
         tags=result["yt_tags"],
