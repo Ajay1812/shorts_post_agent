@@ -103,3 +103,33 @@ shorts_post_agent/
 ├── pyproject.toml          # Project metadata and dependency listing
 └── README.md
 ```
+
+## Automating with Cron (Linux/Mac)
+
+You can schedule the Shorts Post Agent to run automatically every day using **cron**.
+
+1. Find your Python path:
+   ```bash
+   which python3
+   ```
+2. Open the cron editor:
+
+    ```bash
+    crontab -e
+    ```
+
+3. Add a job to run the script every day at 5:00 PM:
+
+    ```bash
+    0 17 * * * /home/user_name/python_path/python/3.13.7/bin/python3 /home/nf/Documents/projects/shorts_post_agent/main.py >> /home/nf/cron.log 2>&1
+    ```
+- 0 17 * * * → Runs daily at 5:00 PM
+- First path → Python interpreter
+- Second path → Project’s main.py file
+- **Logs:** /home/nf/cron.log 2>&1 → Saves logs & errors for debugging
+
+4. Save and exit. Verify with:
+    ```bash
+    crontab -l
+    ```
+Now the Shorts Post Agent will run automatically every day at 5 PM 🎥✨
