@@ -5,11 +5,11 @@ from utils.Youtube.generate_final_video import FinalShort
 from utils.Youtube.random_background_video import RandomVideo
 from utils.processed_clip import ProcesseVideo
 from workflows.shorts_workflow import workflow
-import os
+import re
 if __name__ == "__main__":
     agent = workflow()
     initial_state = {
-        "user_topic": input("Enter your topic: "),
+        "user_topic": re.sub(r"[^a-zA-Z0-9 ]", '_', input("Enter your topic: ")), # remove special characters
         "script": "",
         "yt_title": "",
         "yt_description":"",
@@ -27,6 +27,7 @@ if __name__ == "__main__":
     # Save script
     script_file = result["user_topic"].replace(" ", "_")
     with open(f"Data/scripts/{script_file}.txt", 'w') as f:
+        result["script"] = re.sub(r'(\*\*|__|\*|_)', '', result["script"]) # remove bold/italic (**) from script
         f.write(result["script"])
 
     # Generate Audio
@@ -71,5 +72,5 @@ if __name__ == "__main__":
         title=result["yt_title"],
         description=result["yt_description"],
         tags=result["yt_tags"],
-        privacy_status="private"
+        privacy_status="public"
     )

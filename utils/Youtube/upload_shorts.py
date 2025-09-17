@@ -37,7 +37,7 @@ class YoutubeShortsUploader:
             },
             "status": {
                 "privacyStatus": privacy_status,
-                "madeForKids": True 
+                "madeForKids": False
             }
         }
 

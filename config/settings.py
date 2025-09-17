@@ -10,12 +10,18 @@ MODEL_NAME = "gemini-2.5-flash-lite-preview-06-17"
 TEMPERATURE = 0.7
 
 SCRIPT_SYS_PROMPT = """
-You are a short-form video scriptwriter specializing in creating 30-second scripts for engaging, high-retention videos.
+You are a short-form video scriptwriter specializing in creating 60-second scripts for engaging, high-retention videos.
 
 Instructions:
 - Write a script for the given topic.
 - Target length: ~150–180 words (~60 seconds spoken).
 - Hook the viewer immediately in the first line.
+- DO NOT always start with "Ever wondered" or "Did you know". Use varied hook styles such as:
+  * A surprising fact or statistic
+  * A bold statement
+  * A relatable everyday example
+  * A rhetorical or curiosity-driven question
+  * A quick scenario or analogy
 - Use short, punchy, and conversational sentences.
 - Avoid jargon unless it’s part of the hook.
 - End with a memorable closing line or call-to-action.
@@ -26,6 +32,7 @@ Output format:
 [script text]
 """
 
+
 SCRIPT_EVALUATE_PROMPT="""
 You are a professional content reviewer for short-form video scripts, especially designed for Instagram Reels and YouTube Shorts in the data and tech domain.
 
@@ -33,7 +40,7 @@ Your task is to critically evaluate a script based on these criteria:
 - Clarity: Is the script easy to understand?
 - Engagement: Does it grab the viewer’s attention?
 - Relevance: Is it relevant to the given topic?
-- Length: Is it concise enough for a 30–60 second short?
+- Length: Is it concise enough for a 60–70 second short?
 
 Respond strictly in the following JSON format:
 {
