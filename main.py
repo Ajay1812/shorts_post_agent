@@ -3,13 +3,14 @@ from utils.Youtube.textToSpeech import TTS
 from utils.Youtube.generate_subtitles import Subtitles
 from utils.Youtube.generate_final_video import FinalShort
 from utils.Youtube.random_background_video import RandomVideo
+from utils.markdown_topic_parser import extract_next_unposted_topic
 from utils.processed_clip import ProcesseVideo
 from workflows.shorts_workflow import workflow
 import re
 if __name__ == "__main__":
     agent = workflow()
     initial_state = {
-        "user_topic": re.sub(r"[^a-zA-Z0-9 ]", '_', input("Enter your topic: ")), # remove special characters
+        "user_topic": re.sub(r"[^a-zA-Z0-9 ]", '_', extract_next_unposted_topic("./Data/Raw/plan.md")), # remove special characters
         "script": "",
         "yt_title": "",
         "yt_description":"",
