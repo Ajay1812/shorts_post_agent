@@ -21,8 +21,6 @@ if __name__ == "__main__":
         "feedback_history": []
     }
     result = agent.invoke(initial_state)
-    # print(result["script"])
-    # print(result)
     
     # Save script
     script_file = result["user_topic"].replace(" ", "_")
