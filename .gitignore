@@ -13,4 +13,11 @@ wheels/
 .vscode
 .vscode*
 client.json
+token.json
 Data
+
+# IDE / OS
+.idea/
+.DS_Store
+
+plan.md

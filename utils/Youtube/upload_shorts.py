@@ -1,3 +1,5 @@
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
@@ -13,11 +15,22 @@ class UploadShorts:
     def authenticate(self):
         os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
-        flow = InstalledAppFlow.from_client_secrets_file(
-            self.client_secrets_file,
-            self.scopes
-        )
-        credentials = flow.run_local_server(port=8080)
+        credentials = None
+        if os.path.exists(self.token_file):
+            credentials = Credentials.from_authorized_user_file(self.token_file, self.scopes)
+
+        if not credentials or not credentials.valid:
+            if credentials and credentials.expired and credentials.refresh_token:
+                credentials.refresh(Request())
+            else:
+                flow = InstalledAppFlow.from_client_secrets_file(
+                    self.client_secrets_file,
+                    self.scopes
+                )
+                credentials = flow.run_local_server(port=8080, access_type='offline', prompt='consent')
+
+            with open(self.token_file, 'w') as token:
+                token.write(credentials.to_json())
 
         youtube = build("youtube", "v3", credentials=credentials)
         return youtube

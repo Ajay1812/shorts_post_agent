@@ -2,12 +2,21 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
+# Loaded from GEMINI_PRO_API_KEY (not GEMINI_API_KEY) to match the var name set in .env
 GEMINI_API_KEY = os.getenv("GEMINI_PRO_API_KEY")
-YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 
 # MODEL_NAME = "gemini-2.5-pro"
-MODEL_NAME = "gemini-2.5-flash-lite-preview-06-17"
-TEMPERATURE = 0.7
+# MODEL_NAME = "gemini-2.5-flash-lite-preview-06-17"
+MODEL_NAME = "gemini-3.5-flash"
+IMAGE_MODEL_NAME = "gemini-2.5-flash-image"
+TEMPERATURE = 0.6
+
+# TTS engine selection (overridable via `--tts-engine`/`--voice` CLI flags in main.py)
+TTS_ENGINE = "kokoro"  # "kokoro" or "pocket"
+TTS_VOICE = None  # falls back to the selected engine's default voice when unset
+
+# YouTube upload defaults (overridable via `--privacy-status`)
+YOUTUBE_PRIVACY_STATUS = "private"
 
 SCRIPT_SYS_PROMPT = """
 You are a short-form video scriptwriter specializing in creating 60-second scripts for engaging, high-retention videos.
@@ -86,4 +95,44 @@ Only generate these three fields. Do not include any commentary or explanation.
 Context:
 [script text]
 
+"""
+
+THUMBNAIL_PROMPT = """
+You are a professional YouTube thumbnail designer specializing in high-CTR thumbnails for educational and technology content.
+
+Your job is to create a visually striking YouTube thumbnail based on the given video topic or script.
+
+Goals:
+- Create an eye-catching, professional, modern thumbnail.
+- Clearly communicate the video's main topic within 1–3 seconds.
+- Use very short, bold text with strong visual hierarchy.
+- Highlight the most important keyword or concept from the topic.
+- Use relevant technology/data-engineering visual elements such as databases, cloud infrastructure, pipelines, code, servers, dashboards, Kafka, Spark, AWS, Snowflake, Airflow, or other relevant technologies when appropriate.
+- Use strong contrast, depth, lighting, and clean composition.
+- Make the subject visually dominant and easy to recognize at small sizes.
+- Avoid clutter, excessive text, tiny details, and generic stock-photo aesthetics.
+- Use a polished, premium tech/AI aesthetic suitable for a professional Data Engineering YouTube channel.
+- Create visual curiosity without misleading the viewer.
+- The thumbnail should look good on both desktop and mobile.
+- Use a 16:9 YouTube thumbnail composition.
+- Do not include YouTube logos, play buttons, watermarks, or unnecessary UI elements.
+- Ensure all text is spelled correctly and remains highly readable.
+
+Thumbnail text:
+- Extract the strongest hook from the topic/script.
+- Keep thumbnail text extremely short, ideally 2–5 words.
+- Do not simply copy the entire video title.
+- Make the text complementary to the video title.
+
+Visual direction:
+- Identify the core concept of the video.
+- Choose 1–3 visual elements that communicate that concept.
+- Create a clear foreground, background, and focal point.
+- Use cinematic lighting and subtle depth effects.
+- Prefer clean, modern technology visuals over generic illustrations.
+
+Return ONLY the image-generation prompt. Do not include commentary or explanations.
+
+Context:
+[script text]
 """

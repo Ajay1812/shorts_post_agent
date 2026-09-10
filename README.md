@@ -1,6 +1,6 @@
 # Shorts Post Agent
 
-Shorts Post Agent is a Python-based tool that **automates the creation and publishing of YouTube Shorts videos.** Given a topic input, the agent generates a video **script using AI, converts it to speech, produces subtitles, merges the audio with a background video, and uploads the final short to YouTube.** The pipeline leverages modern AI models (LangChain, LangGraph agents, TTS (Kokoro), ASR (OpenAI’s Whisper), ) and the YouTube Data API to create a complete end-to-end shorts workflow.
+Shorts Post Agent is a Python-based tool that **automates the creation and publishing of YouTube Shorts videos.** Given a topic (pulled automatically from `Data/Raw/plan.md`), the agent generates a video **script using AI, converts it to speech, produces subtitles, merges the audio with a background video, and uploads the final short to YouTube.** The pipeline leverages modern AI models (LangChain, LangGraph agents, TTS (Kokoro or Pocket TTS), ASR (OpenAI’s Whisper)) and the YouTube Data API to create a complete end-to-end shorts workflow.
 
 ## Features
 
@@ -8,7 +8,7 @@ Shorts Post Agent is a Python-based tool that **automates the creation and publi
 
 - **YouTube Metadata:** Generates titles, descriptions, and tags automatically.
 
-- **Text-to-Speech (TTS):** Converts scripts into speech using the Kokoro model.
+- **Text-to-Speech (TTS):** Converts scripts into speech using a selectable engine — [Kokoro](https://github.com/hexgrad/kokoro) (default) or [Pocket TTS](https://kyutai.org/blog/2026-01-13-pocket-tts/) — with a choice of voice, via `--tts-engine`/`--voice`.
 
 - **Auto-Subtitles (ASR):** Transcribes audio into timed SRT subtitles with Whisper (requires FFmpeg).
 
@@ -49,7 +49,9 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 - Download the **client_secret.json** file and place it at **config/client.json**. Ensure it is named client.json or update main.py accordingly.
 
-- The script will use this file to authenticate and upload the video using the youtube.upload scope
+- The script will use this file to authenticate and upload the video using the youtube.upload scope.
+
+- The first upload opens a browser window to log in and grant access; the resulting credentials are cached in `token.json` (git-ignored) and automatically refreshed on later runs, so you won't be asked to log in again unless `token.json` is deleted or the grant is revoked.
 
 **4. .env file:**
 
@@ -64,12 +66,25 @@ Whisper and the video processing require FFmpeg. Install it via your package man
 **6. Prepare raw video:**
 Place your background video(s) in `Data/Raw/`. You can use any MP4 video (vertical aspect recommended for Shorts).
 
-**7. Run the main script and follow the prompt. For example:**
+**7. Run the pipeline:**
+
+The topic is picked up automatically from the next unchecked item in `Data/Raw/plan.md` — there is no interactive prompt. The TTS engine, voice, and YouTube upload privacy can be selected via CLI flags:
 
 ```bash
+# Default (Kokoro, voice af_bella, private upload)
 $ python main.py
-Enter your topic: What are OLAP and OLTP systems?
+
+# Use Pocket TTS with a specific voice
+$ python main.py --tts-engine pocket --voice alba
+
+# Use Kokoro with a specific voice, publish publicly
+$ python main.py --tts-engine kokoro --voice af_bella --privacy-status public
+
+# See all options
+$ python main.py --help
 ```
+
+Supported `--tts-engine` values: `kokoro` (default voice `af_bella`), `pocket` (default voice `alba`; 20+ voices across English/Italian/Spanish/German/Portuguese/French, see the [Pocket TTS voice catalog](https://kyutai.org/blog/2026-01-13-pocket-tts/)).
 
 ---
 
@@ -91,8 +106,12 @@ shorts_post_agent/
 │   ├── llm.py              # LLM wrapper functions
 │   ├── processed_clip.py   # Video splitting utilities
 │   ├── script_generator.py # AI script generation logic
+│   ├── tts/
+│   │   ├── base.py         # BaseTTS interface
+│   │   ├── kokoro_tts.py    # Kokoro TTS engine
+│   │   ├── pocket_tts.py    # Pocket TTS engine
+│   │   └── factory.py      # build_tts(engine, voice, output_path)
 │   └── Youtube/
-│       ├── textToSpeech.py      # Kokoro TTS interface
 │       ├── generate_subtitles.py # Whisper ASR interface
 │       ├── generate_final_video.py # Merging video/audio/subtitles
 │       ├── upload_shorts.py      # YouTube upload helper

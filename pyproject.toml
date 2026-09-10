@@ -16,9 +16,12 @@ dependencies = [
     "langgraph>=0.6.4",
     "nltk>=3.9.2",
     "numpy>=2.3.2",
+    "pocket-tts>=0.1.0",
     "python-dotenv>=1.1.1",
+    "scipy>=1.14.0",
     "soundfile>=0.13.1",
     "srt>=3.5.3",
+    "typer>=0.15.0",
     "unstructured[md]>=0.18.15",
     "whisper-openai>=1.0.0",
 ]
