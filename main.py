@@ -40,7 +40,7 @@ def main(
     # Save script
     script_file = result["user_topic"].replace(" ", "_")
     with open(f"Data/scripts/{script_file}.txt", 'w') as f:
-        result["script"] = re.sub(r'(\*\*|__|\*|_)', '', result["script"]) # remove bold/italic (**) from script
+        result["script"] = re.sub(r'(\*\*|__|\*|_)', '', result["script"][0]['text']) # remove bold/italic (**) from script
         f.write(result["script"])
 
     # Generate Audio

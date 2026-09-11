@@ -21,6 +21,7 @@ dependencies = [
     "scipy>=1.14.0",
     "soundfile>=0.13.1",
     "srt>=3.5.3",
+    "transformers>=4.44,<5",
     "typer>=0.15.0",
     "unstructured[md]>=0.18.15",
     "whisper-openai>=1.0.0",
